@@ -1,9 +1,3 @@
-# Compiled class file
-*.class
-
-# Log file
-*.log
-
 # BlueJ files
 *.ctxt
 
@@ -11,6 +5,7 @@
 .mtj.tmp/
 
 # Package Files #
+*.7z
 *.jar
 *.war
 *.nar
@@ -18,6 +13,43 @@
 *.zip
 *.tar.gz
 *.rar
+*.dmg
+*.gz
+*.iso
+*.tar
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# Logs and databases #
+*.log
+*.sql
+*.sqlite
+
+# Compiled source #
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# OS generated files #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Perso #
+#########
+bin\
+bin/
+.project
+.classpath
+.idea/
+.idea\
+*.iml
+.metadata
