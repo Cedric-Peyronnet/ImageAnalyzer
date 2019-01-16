@@ -1,10 +1,7 @@
 package palette;
 
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
@@ -17,6 +14,8 @@ import static palette.util.ColorThief.getPalette;
 @RestController
 public class PaletteController {
 
+    //Try to put "localhost" instead of *
+    @CrossOrigin(origins="*")
     @RequestMapping("/randompalette")
     public Palette handleRandomPalette(@RequestParam(value="maincolor", defaultValue="orange") String mainColor) {
         Palette randomPalette = new Palette();
@@ -33,13 +32,20 @@ public class PaletteController {
         return randomPalette;
     }
 
+    //Try to put "localhost" instead of *
+    @CrossOrigin(origins="*")
     @PostMapping("/palette")
-    public Palette handleImageUpload(@RequestParam("file") MultipartFile file) {
+    public Palette handleImageUpload(@RequestParam("file-img") MultipartFile file) {
 
         try {
             BufferedImage imgBuff = ImageIO.read(file.getInputStream());
             int[][] paletteArrayRgb = getPalette(imgBuff, 3);
-            System.out.println(paletteArrayRgb);
+            System.out.println(paletteArrayRgb[0][0]);
+            System.out.println(paletteArrayRgb[0][1]);
+            System.out.println(paletteArrayRgb[0][2]);
+
+            String hexColor = String.format( "#%02x%02x%02x", paletteArrayRgb[0][0], paletteArrayRgb[0][1], paletteArrayRgb[0][2] );
+            System.out.println(hexColor);
         } catch (IOException e) {
             e.printStackTrace();
         }
