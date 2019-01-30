@@ -1,10 +1,8 @@
 package palette;
 
+import org.json.JSONObject;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
@@ -13,10 +11,14 @@ import java.io.File;
 import java.io.IOException;
 
 import static palette.util.ColorThief.getPalette;
+import static palette.util.PaletteUtil.arrayTopalette;
+import static palette.util.PaletteUtil.paletteToJson;
 
 @RestController
 public class PaletteController {
 
+    //Try to put "localhost" instead of *
+    @CrossOrigin(origins="*")
     @RequestMapping("/randompalette")
     public Palette handleRandomPalette(@RequestParam(value="maincolor", defaultValue="orange") String mainColor) {
         Palette randomPalette = new Palette();
@@ -33,22 +35,21 @@ public class PaletteController {
         return randomPalette;
     }
 
+    //Try to put "localhost" instead of *
+    @CrossOrigin(origins="*")
     @PostMapping("/palette")
-    public Palette handleImageUpload(@RequestParam("file") MultipartFile file) {
+    public String handleImageUpload(@RequestParam("file-img") MultipartFile file) {
 
+        JSONObject paletteJson = new JSONObject();
         try {
             BufferedImage imgBuff = ImageIO.read(file.getInputStream());
             int[][] paletteArrayRgb = getPalette(imgBuff, 3);
-            System.out.println(paletteArrayRgb);
+            paletteJson = paletteToJson(arrayTopalette(paletteArrayRgb));
+
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-
-
-        return new Palette(
-                "#457821",
-                "#518934",
-                "#508732");
+        return paletteJson.toString();
     }
 }

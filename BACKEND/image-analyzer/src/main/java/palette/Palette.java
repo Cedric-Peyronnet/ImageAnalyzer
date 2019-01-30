@@ -39,4 +39,10 @@ public class Palette {
     public void setThirdColor(String thirdColor) {
         this.thirdColor = thirdColor;
     }
+
+    public boolean isPaletteFull() {
+        return !this.mainColor.trim().isEmpty()
+                && !this.secondColor.trim().isEmpty()
+                && !this.thirdColor.trim().isEmpty();
+    }
 }

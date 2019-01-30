@@ -14,19 +14,6 @@ import static palette.util.ColorThief.getPalette;
 public class Application {
 
     public static void main(String[] args) {
-
-
-
-        // JUST FOR TEST
-        try {
-            final BufferedImage testbuf = ImageIO.read(new File("colorpalette.png"));
-            int[][] paletteArrayRgb = getPalette(testbuf, 3);
-            System.out.println(paletteArrayRgb);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
         SpringApplication.run(Application.class, args);
     }
 }
