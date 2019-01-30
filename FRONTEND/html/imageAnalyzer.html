@@ -6,6 +6,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <link rel="stylesheet" href="../css/main.css">
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
@@ -25,7 +27,7 @@
 
             </div>
             <div class="col-sm">
-                <center> Image Analyzer</center>
+                <center>Image Analyzer</center>
             </div>
             <div class="col-sm">
 
@@ -35,23 +37,33 @@
 
 
     <div class="container">
-        <div class="row">
-            <div class="col-sm">
-
-                <input type="file" id="input-file" title="Pick an image" accept="image/*">
-
-
-            </div>
-            <div class="col-sm">
-                <input type="button" value="Send" id="btn-send"> 
-            </div>
-            <div class="col-sm">
-
-            </div>
-        </div>
+        <center>
+            <img src="../images/upload-btn.png" id="upfile" style="cursor:pointer" />
+            <input type="file" id="input-file" name="input-file" style="display:none" accept="image/*"/>
+        </center>
     </div>
 
+    <div class="container">
+        <center>
+            <img id="img-display" src="#" alt=""/>
+        </center>
+    </div>
 
+    <div class="container">
+        <center>
+            <div id="palette">
+                <div id="main">
+    
+                </div>
+                <div id="second">
+                    
+                </div>
+                <div id="third">
+    
+                </div>
+            </div>
+        </center>
+    </div>
 
         <!-- Optional JavaScript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"

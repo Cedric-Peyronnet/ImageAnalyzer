@@ -1,14 +1,29 @@
 $(document).ready(function(){
 
-  $("#btn-send").click(function(){
+    $("#input-file").change(function() {
+        readURL(this);
         var imgFile = $('#input-file')[0].files[0];
-        console.log(imgFile);
         sendFile(imgFile);
-    
-  });
+    });
+
+    $("#upfile").click(function () {
+        $("#input-file").trigger('click');
+    });
 
 }); 
 
+function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+  
+      reader.onload = function(e) {
+        $('#img-display').attr('src', e.target.result);
+      }
+  
+      reader.readAsDataURL(input.files[0]);
+    }
+}
+  
 
 function sendFile(imgFile) {
     //todo : check if file exists
@@ -19,9 +34,16 @@ function sendFile(imgFile) {
         url: 'http://localhost:8080/palette',
         data: fd,
         success:function(data){
-            console.log(data);
+            var palette = $.parseJSON(data);
+            displayPalette(palette.mainColor, palette.secondColor, palette.thirdColor);
         },
         processData: false,
         contentType: false
     });
+}
+
+function displayPalette(mainColor, secondColor, thirdColor) {
+    $("#main").css('background-color', mainColor);
+    $("#second").css('background-color', secondColor);
+    $("#third").css('background-color', thirdColor);
 }
