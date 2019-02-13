@@ -45,4 +45,29 @@ public final class PaletteUtil {
 
         return paletteJson;
     }
+
+    public static String extractMainRGB(int[][] paletteArray) {
+        int r = paletteArray[0][0];
+        int g = paletteArray[0][1];
+        int b = paletteArray[0][2];
+
+        String codeColor = "";
+        int maxValue = 0;
+
+        if (r > maxValue) {
+            maxValue = r;
+            codeColor = "R";
+        }
+        if (g > maxValue) {
+            maxValue = g;
+            codeColor = "G";
+        }
+        if (b > maxValue) {
+            maxValue = b;
+            codeColor = "B";
+        }
+
+        return codeColor;
+
+    }
 }

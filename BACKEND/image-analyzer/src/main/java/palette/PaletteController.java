@@ -12,6 +12,7 @@ import java.io.IOException;
 
 import static palette.util.ColorThief.getPalette;
 import static palette.util.PaletteUtil.arrayTopalette;
+import static palette.util.PaletteUtil.extractMainRGB;
 import static palette.util.PaletteUtil.paletteToJson;
 
 @RestController
@@ -45,6 +46,9 @@ public class PaletteController {
             BufferedImage imgBuff = ImageIO.read(file.getInputStream());
             int[][] paletteArrayRgb = getPalette(imgBuff, 3);
             paletteJson = paletteToJson(arrayTopalette(paletteArrayRgb));
+
+            // TODO : Send mainRGB to the Arduino
+            String mainRGB = extractMainRGB(paletteArrayRgb);
 
         } catch (IOException e) {
             e.printStackTrace();
